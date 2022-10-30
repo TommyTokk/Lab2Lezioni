@@ -7,11 +7,17 @@
 #include <errno.h>
 #include "utils.h"
 
-int main(int argc, char const *argv[]){
+int main(int argc, char **argv){
+    /*int dim = argc - 1;
+    if(argc < 2) termina("Uso: main s1 s2 ... (dove lgi sk sono stringhe)");*/
+
     int dim = atoi(argv[1]);
 
     int *array = caricaArray(dim);
-    qsort(array, dim, sizeof(int), &cmp);
+    //char **array = caricaArrayStr(argv, dim);
+    stampaArray(array, dim, stdout);
+    qsort(array, dim, sizeof(int), &intCmp);
+    puts("--- eseguo qsort ---");
     stampaArray(array, dim, stdout);
     free(array);
 

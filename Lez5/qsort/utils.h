@@ -9,5 +9,8 @@
 void termina(char *msg);
 
 int *caricaArray(int dim);
-int cmp(int *a, int *b);
+char **caricaArrayStr(char **args, int dim);
+int intCmp(const void *a, const void *b);
+int strCmp(const void *string1, const void *string2);
 void stampaArray(int *array, int dim, FILE *fout);
+void stampaArrayStr(char **array, int dim, FILE *fout);

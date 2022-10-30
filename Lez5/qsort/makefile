@@ -12,3 +12,6 @@ main: main.o utils.o
 
 main.o: main.c utils.h
 	gcc -c main.c
+
+clean:
+	rm -f  main *.o
