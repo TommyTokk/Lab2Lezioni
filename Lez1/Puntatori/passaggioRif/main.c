@@ -40,8 +40,6 @@ int primo(int num){
 
 int *creaArray(int n,int *in){
     int size = 5; // => contiene una dimensione di partenza per l'array
-    int size = 5; // => contiene una dimensione di partenza per l'array
-    int size = 5; // => contiene una dimensione di partenza per l'array
     int actualSize = 0;
     int *arr = malloc(size*sizeof(int));
     if(arr == NULL) termina("Allocazione fallita");
