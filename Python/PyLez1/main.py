@@ -1,2 +1,9 @@
-print("------ LAVORI IN CORSO -----")
-print("C'è tempo e luogo per ogni cosa, ma non ora.")
+import time
+x = 1
+
+sTime = time.time()
+
+while(x != 1000000000):
+        x = x + 1
+
+print(f"Time (s): {(time.time() - sTime)}")
