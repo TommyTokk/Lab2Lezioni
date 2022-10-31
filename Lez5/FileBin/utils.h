@@ -9,4 +9,5 @@
 int primo(int num);
 int *creaArray(int n,int *in);
 void stampaArrayIntBin(int *array, int dim, FILE *fout);
+void stampaArrayInt(int *array, int dim, FILE *fout);
 void termina(char *msg);

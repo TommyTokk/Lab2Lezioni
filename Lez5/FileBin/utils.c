@@ -41,13 +41,18 @@ int *creaArray(int n,int *in){
     return arr;
 }
 
+
 void stampaArrayIntBin(int *array, int dim, FILE *fout){
-    /*for(int i = 0; i < dim; i++){
-        fprintf(fout, "%4d", array[i]);
-    }
-    fprintf(fout,"\n");*/
+    /**/
     int e = fwrite(array, sizeof(int), dim, fout);
     if(e != dim) termina("Scrittura file fallita");
+}
+
+void stampaArrayInt(int *array, int dim, FILE *fout){
+    for(int i = 0; i < dim; i++){
+        fprintf(fout, "%4d", array[i]);
+    }
+    fprintf(fout, "\n");
 }
 
 void termina(char *msg){
