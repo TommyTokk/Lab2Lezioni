@@ -14,10 +14,10 @@ fprintf         /
 fread           read
 fwrite          write
 
-**## ATTENZIONE**
+## **ATTENZIONE**
 Non esiste una kernel SC specifica per la *fprintf* in quanto le SC lavorano a livello macchina e quindi lavorano con informazioni sotto forma di byte e non di caratteri testuali. Quindi la funzione di libreria *fprintf* farà prima la conversione $byte\;\Leftrightarrow\;testo$ e poi chiamerà la kernel SC *write*.
 
-**# ATTENZIONE**
+## **ATTENZIONE**
 Le kernel SC danno poche informazioni riguardo a cosa fanno quindi *USATELE SOLO SE SAPETE COSA STATE FACENDO*
 
 # System call e processi
@@ -33,9 +33,9 @@ Ogni processo all'interno del sistema è memorizzato all'interno di una tabella 
 
 E i metodi sono:
 ```C
-pid_t getpid(void)
+pid_t getpid(void);
 /*Ritorna il PID (Nessun codice di errore)*/
-pid_t getppid(void)
+pid_t getppid(void);
 /*Ritorna il PID del padre (Nessun codice di errore)*/
 ```
 
