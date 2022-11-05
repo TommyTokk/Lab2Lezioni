@@ -5,4 +5,19 @@ CFALGS = -g -Wall -O -std=c99
 LDLIBS = -lm
 
 # Se scriviamo solo make, verrà compilato di defult main
-all: fork
+all: main
+
+main: main.o utils.o
+	gcc utils.o main.o -o main
+
+main.o: main.c utils.h
+	gcc -c main.c
+
+pipe: pipe.o utils.o
+	gcc utils.o pipe.o -o pipe
+
+pipe.o: pipe.c utils.h
+	gcc -c pipe.c
+
+clean:
+	rm -f  main pipe *.o
