@@ -6,4 +6,4 @@ sTime = time.time()
 while(x != 1000000000):
         x = x + 1
 
-print(f"Time (s): {(time.time() - sTime)}")
+print(f"{x}")

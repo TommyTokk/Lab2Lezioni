@@ -1,0 +1,26 @@
+Calcolo della somma dei primi in un file mediante processi ausiliari
+
+Scrivere un programma somma_primi che invocato dalla linea di comando scrivendo
+
+somma_primi nomefile
+calcola la somma dei numeri primi contenuti in nomefile utilizzando il seguente procedimento.
+
+Per prima cosa il processo genitore crea due pipe up and down e due processi ausiliari p1 e p2. La pipe up serve per inviare dati dai processi ausiliari al processo genitore, mentre la pipe down è usata per inviari dati dal genitore ai processi ausiliari.
+
+Il processo genitore inizia a leggere gli interi dal file di testo passato in argv[1] e li scrive nella pipe down. I due processi ausiliari leggono i dati dal file descriptor down[0], non appena un processo ausiliario legge un valore verifica se sia un numero primo e in caso affermativo lo aggiunge ad una variabile somma. Per la variabile somma utilizzate un long in quanto se i numeri da sommare sono molti accomulandoli in un semplice int si potrebbe avere un overflow.
+
+NOTA ESPLICATIVA: Quando il processo genitore scrive nella pipe se entrambi i processi ausiliari cercano di leggere, uno dei due processi riuscirà a leggerlo mentre l'altro processo rimane sospeso ed eventualmente leggerà il prossimo.
+
+Quando il processo genitore ha terminato la lettura degli interi dal file chiude down[1] (non ci sono altri dati da inviare dal genitore agli ausiliari) e si mette a leggere da up[0] i valori inviati dai processi ausiliari.
+
+I processi ausiliari infatti, quando non ricevono più dati dal genitore scrivono la somma dei primi che hanno calcolato (ognuno la sua) in up[1] e successivamente terminano.
+
+Il processo genitore ricevute le somme le addiziona insieme e stampa su stdout il risultato finale.
+
+Esperimenti
+
+Per testare il vostro programma usate lo script fileprimi.py che genera un file con un numero assegnato di interi positivi e calcola la somma dei primi in esso contenuti (la somma entra a far parte del nome del file).
+
+makefile
+
+L'eseguibile somma_primi deve essere ottenuto linkando insieme i file oggetto somma_primi.o e xerrori.o e il makefile deve essere modificato opportunamente

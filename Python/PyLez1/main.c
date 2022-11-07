@@ -19,7 +19,7 @@ int main()
     // dividing the difference by CLOCKS_PER_SEC to convert to seconds
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
  
-    printf("Time (s): %f \n", time_spent);
+    printf(" %d \n", x);
  
     return 0;
 }
