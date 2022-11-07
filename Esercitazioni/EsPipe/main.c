@@ -41,21 +41,21 @@ int main(int argc, char const *argv[]){
         pid_t pid = xfork(__LINE__, __FILE__);
 
         if(pid == 0){//Sono il figlio
-            long sonSum = 0;
+            int sonSum = 0;
             xclose(up[0], __LINE__, __FILE__);//Chiudo la pipe up in lettura --> uso up per scrivere
             xclose(down[1], __LINE__, __FILE__);//Chiudo down in scrittura --> uso down per leggere
             
             while(true){
                 int x;//Contiene il valore letto
                 ssize_t e = read(down[0],&x, sizeof(int));
-                printf("Sono %d e ho letto: %d\n", getpid(), x);
+                //printf("Sono %d e ho letto: %d\n", getpid(), x);
                 if(e == 0) break;
                 if(primo(x))
-                    sonSum += (long) x;
+                    sonSum +=  x;
             }
 
+            printf("La somma di %d è: %d\n", getpid(), sonSum);
             //HO LETTO E SOMMATO
-
             int e = write(up[1], &sonSum, sizeof(int));
             if(e != sizeof(int)) termina("Errore scrittura pipe");
             xclose(up[1], __LINE__, __FILE__);//Chiudo la pipe up in scrittura --> up chiusa completamente
@@ -80,8 +80,8 @@ int main(int argc, char const *argv[]){
     int somTot = 0;
 
     while (true){
-        long sonSum;
-        int e = read(up[0], &sonSum, sizeof(long));
+        int sonSum;
+        int e = read(up[0], &sonSum, sizeof(int));
         //printf("sono il padre e ho letto %d\n",  sonSum);
         if(e == 0) break;
         somTot +=  sonSum;
