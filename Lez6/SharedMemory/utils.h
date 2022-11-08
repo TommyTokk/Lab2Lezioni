@@ -8,8 +8,14 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <sys/mman.h>
+#include <sys/stat.h>        /* For mode constants */
+#include <fcntl.h>           /* For O_* constants */
+
 
 // termina programma
 void termina(const char *s); 
@@ -33,3 +39,11 @@ int xshm_unlink(const char *name, int linea, char *file);
 int xftruncate(int fd, off_t length, int linea, char *file);
 void *simple_mmap(size_t length, int fd, int linea, char *file);
 int xmunmap(void *addr, size_t length, int linea, char *file);
+
+// semafori POSIX
+sem_t *xsem_open(const char *name, int oflag, mode_t mode, unsigned int value, int linea, char *file);
+int xsem_unlink(const char *name, int linea, char *file);
+int xsem_close(sem_t *sem, int linea, char *file);
+int xsem_init(sem_t *sem, int pshared, unsigned int value, int linea, char *file);
+int xsem_post(sem_t *sem, int linea, char *file);
+int xsem_wait(sem_t *sem, int linea, char *file);

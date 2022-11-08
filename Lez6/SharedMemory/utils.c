@@ -68,3 +68,144 @@ int xpipe(int pipefd[2], int linea, char *file) {
   }
   return e;
 }
+
+// ---------------- memoria condivisa POSIX
+int xshm_open(const char *name, int oflag, mode_t mode, int linea, char *file)
+{
+  int e = shm_open(name, oflag, mode);
+  if(e== -1) {
+    perror("Errore shm_open"); 
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    exit(1);
+  }
+  return e;  
+}
+
+int xshm_unlink(const char *name, int linea, char *file)
+{
+  int e = shm_unlink(name);
+  if(e== -1) {
+    perror("Errore shm_unlink"); 
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    exit(1);
+  }
+  return e;  
+}
+
+int xftruncate(int fd, off_t length, int linea, char *file)
+{
+  int e = ftruncate(fd,length);
+  if(e== -1) {
+    perror("Errore ftruncate"); 
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    exit(1);
+  }
+  return e;  
+}
+
+void *simple_mmap(size_t length, int fd, int linea, char *file)
+{
+  void *a =  mmap(NULL, length ,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
+  if(a == (void *) -1) {
+    perror("Errore mmap"); 
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    exit(1);
+  }
+  return a;
+}
+
+int xmunmap(void *addr, size_t length, int linea, char *file)
+{
+  int e = munmap(addr, length);
+  if(e== -1) {  
+    perror("Errore munmap"); 
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    exit(1);
+  }
+  return e;
+}
+
+
+// ---- semafori POSIX
+sem_t *xsem_open(const char *name, int oflag, mode_t mode, 
+              unsigned int value,  int linea, char *file) {
+  sem_t *s = sem_open(name,oflag,mode,value);
+  if (s==SEM_FAILED) {
+    perror("Errore sem_open");
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file); 
+    exit(1);
+  }
+  return s;
+}
+
+// chiude un NAMED semaphore 
+int xsem_close(sem_t *s, int linea, char *file)
+{
+  int e = sem_close(s);
+  if(e!=0) {
+    perror("Errore sem_close"); 
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    exit(1);
+  }
+  return e;  
+}
+
+int xsem_unlink(const char *name, int linea, char *file)
+{
+  int e = sem_unlink(name);
+  if(e!=0) {
+    perror("Errore sem_unlink"); 
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    exit(1);
+  }
+  return e;  
+}
+
+
+int xsem_init(sem_t *sem, int pshared, unsigned int value, int linea, char *file) {
+  int e = sem_init(sem,pshared,value);
+  if (e!=0) {
+    perror("Errore sem_init");
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    pthread_exit(NULL);
+  }
+  return e;
+}
+
+int xsem_post(sem_t *sem, int linea, char *file) {
+  int e = sem_post(sem);
+  if (e!=0) {
+    perror("Errore sem_post");
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    pthread_exit(NULL);
+  }
+  return e;
+}
+
+int xsem_wait(sem_t *sem, int linea, char *file) {
+  int e = sem_wait(sem);
+  if (e!=0) {
+    perror("Errore sem_wait");
+    fprintf(stderr,"== %d == Linea: %d, File: %s\n",getpid(),linea,file);
+    pthread_exit(NULL);
+  }
+  return e;
+}
+
+
+
+
+// ----- thread (non scrivono il codice d'errore in errno)
+#define Buflen 100
+
+
+// stampa il messaggio d'errore associato al codice en in maniera simile a perror
+void xperror(int en, char *msg) {
+  char buf[Buflen];
+  
+  char *errmsg = strerror_r(en, buf, Buflen);
+  if(msg!=NULL)
+    fprintf(stderr,"%s: %s\n",msg, errmsg);
+  else
+    fprintf(stderr,"%s\n",errmsg);
+}
