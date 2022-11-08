@@ -35,7 +35,7 @@ int main(int argc, char const *argv[]){
     FILE *fin = fopen(argv[1], "r");
 
     if(fin == NULL) termina("Apertura file in fallita");
-    int subProc = 3;
+    int subProc = 2;
     for(int i = 0; i < subProc ; i++){
         /*
         All'interno di questo ciclo vado a creare i figli che si occuperanno di fare le somme
