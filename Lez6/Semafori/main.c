@@ -66,6 +66,7 @@ int main(int argc,char *argv[])
   for(int i=0; i<p; i++) {
     pid_t pid= xfork(__LINE__, __FILE__);
     if(pid==0) { //processo figlio
+      assert(pid == 0);
       int n = m/p;  // quanti numeri verifica ogni figlio + o - 
       int start = n*i; // inizio range figlio i
       int end = (i==p-1) ? m : n*(i+1);
@@ -93,7 +94,7 @@ int main(int argc,char *argv[])
       xmunmap(a,shm_size,__LINE__, __FILE__);
 			xsem_close(sem_a0,__LINE__, __FILE__);
 			xsem_close(sem_finito,__LINE__, __FILE__);
-			sleep(3600); // aspetta per un'ora
+			//sleep(3600); // aspetta per un'ora
       exit(0);
     }
   }
