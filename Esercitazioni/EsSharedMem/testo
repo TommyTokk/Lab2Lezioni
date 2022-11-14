@@ -1,0 +1,13 @@
+Mergepipe
+
+Nota: il progetto è stato illustrato e commentato anche nella lezione del 10/3
+
+Lo scopo di questo esercizio è quello di realizare un algoritmo di ordinamento di interi ispirato al mergesort, ma che usa due processi ausiliari invece della ricorsione.
+
+Il procedimento da seguire è il seguente:
+
+Il processo principale legge da argv[1] il nome di un file binario contenente degli interi a 32 bit, e copia tali interi in un array a[0..n-1] appositamente allocato
+Il processo principale crea due processi ausiliari; il primo processo ausiliario ordina con qsort gli interi in a[0..(n/2)-1] e il secondo processo ausiliario ordina gli interi in a[n/2... n-1]
+A questo punto ognuno dei processi ausiliari ha un mezzo array ordinato e invia gli interi ordinati al processo pricipale mediante una pipe (nota: è necessaria una pipe distinta per ognuno dei due processi)
+Il processo principale legge gli interi dalle due pipe e ottiene l'array ordinato eseguendo il merge. Nota: l'array ordinato può essere sovrascritto su a
+Usate i file test_NNNN sono per gli esperimenti: per verificare la correttezza del programma usate la funzione check_sort e stampate il valore restituito che deve concidere con quello indicato nel nome del file. Potete generare altri file di test con il programma genera.py.
