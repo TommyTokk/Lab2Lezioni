@@ -6,4 +6,4 @@ ma NON DOVETE ESEGUIRE ALCUN COMANDO DI MODIFICA (add, commit, push ecc...). Mod
 COMPROMETTERE QUESTA REPO CON MODIFICHE NON VOLUTE POTREBBE RALLENTARE LA PREPARAZIONE ALL'ESAME PER TUTTI QUANTI.
 Se volete modificare un codice di questa repo siete pregati di farne una copia privata e lavorare con quella.
 
-L'uso consigliato è quello di copiare il codice direttamente dal sito <b SENZA CLONARE </b> questa repo.
+L'uso consigliato è quello di copiare il codice direttamente dal sito <b> SENZA CLONARE </b> questa repo.
