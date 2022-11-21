@@ -1,6 +1,5 @@
 #include "utils.h"
 
-// https://replit.com/join/uwzgqlxxnk-giovannimanzini
 // conteggio dei primi con thread multipli
 
 // NOTA: questo programma ha solo interesse didattico!
@@ -51,7 +50,7 @@ int main(int argc,char *argv[])
   int p= atoi(argv[2]);
   if(p<=0) termina("numero di thread non valido");
 
-  // ---- creo i semaforo
+  // ---- creo i semafori
 	sem_t sem_a0x, sem_finitox;
   // inizalizzo sem_a0x
 	xsem_init(&sem_a0x,0,1,__LINE__, __FILE__);
@@ -59,7 +58,7 @@ int main(int argc,char *argv[])
 
   // creazione thread ausiliari
   pthread_t t[p];   // array di p indentificatori di thread 
-	dati d[p];        // array di p struct che passerò allle p thread
+	dati d[p];        // array di p struct che passerò alle p thread
 	int somma = 0;        // variabile dove accumulo il numero di primi
   for(int i=0; i<p; i++) {
     int n = m/p;  // quanti numeri verifica ogni figlio + o - 
