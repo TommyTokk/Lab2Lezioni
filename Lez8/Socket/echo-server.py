@@ -4,7 +4,7 @@
 import socket
 
 HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
-PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
+PORT = 65433  # Port to listen on (non-privileged ports are > 1023)
 
 # creazione del server socket
 try:
@@ -28,8 +28,13 @@ try:
                 print(f"Contattato da {addr}")
                 while True:
                     lenMsg = conn.recv(64) # leggo la dimensione del messaggio
+                    if(b'a' in lenMsg):
+                        tmpStr = lenMsg.replace(b'a', b'')
+                        lenMsg = tmpStr
+                    print(f"Ricevuto: {lenMsg}")
                     if(lenMsg == b''): break
                     data = conn.recv(int(lenMsg))
+                    print(f"Data: {data}\n")
                     print(f"Ricevuti {len(data)} bytes") 
                     if not data:           # se ricevo 0 bytes 
                         break              # la connessione è terminata

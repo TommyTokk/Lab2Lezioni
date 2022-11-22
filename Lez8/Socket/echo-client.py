@@ -4,7 +4,7 @@
 import socket
 
 HOST = "127.0.0.1"  # The server's hostname or IP address
-PORT = 65432        # The port used by the server
+PORT = 65433       # The port used by the server
 
 # creazione del socket per la connesssione al server
 
@@ -19,7 +19,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
       if n <= 0:
         break
       # invio stringa di n a e attendo la risposta   
-      msg = "a"*n  
+      msg = "a"*n
       # converte il messaggio in sequenza di byte
       s.sendall(str(n).encode()) #Dico al server quanto voglio inviare
       s.sendall(msg.encode())
