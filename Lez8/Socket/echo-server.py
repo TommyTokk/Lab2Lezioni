@@ -6,6 +6,8 @@ import socket
 HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
 PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
 
+
+
 # creazione del server socket
 try:
     #Vado ad creare ed aprire la socket
