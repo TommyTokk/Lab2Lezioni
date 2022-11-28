@@ -126,6 +126,8 @@ int main(int argc,char *argv[]){
   }
 
   fprintf(stderr,"Trovati %d primi con somma %ld\n",tot_primi,tot_somma);
+
+  
   return 0;
 
 }
