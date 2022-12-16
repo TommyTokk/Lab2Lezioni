@@ -346,17 +346,18 @@ capitale *listaCapitaleInserisci(capitale *lis, capitale *c){
     */
 }
 
-/*capitale *cancellaNordiche(capitale *lis, double lat){
+capitale *cancellaNordiche(capitale *lis, double lat){
      if(lis == NULL) return NULL;
-     if(lis->lat > lat){
-        capitale *tmp = lis->next;
+
+     if(lis -> lat > lat){
+        capitale *tmp = lis -> next;
         capitaleDistruggi(lis);
-        cancellaNordiche(tmp, lat);
-    }else{
-        lis->next = cancellaNordiche(lis->next, lat);
+        return cancellaNordiche(tmp, lat);
+     }else{
+        lis -> next = cancellaNordiche(lis -> next, lat);
         return lis;
-    }
-}*/
+     }
+}
 
 capitale *listaCapitaleCrea(FILE *fin){
     capitale *lis = NULL;
@@ -375,4 +376,19 @@ void listaCapitaleDistruggi(capitale *lis){
         listaCapitaleDistruggi(lis -> next);
         capitaleDistruggi(lis);
     }
+}
+
+capitale *duplica(capitale *lis){
+    if(!lis) return lis;
+
+    if(lis -> lat == 20){
+        capitale *tmp = lis -> next;
+        capitale *dup = capitaleCrea(lis -> nome, lis -> lat, lis -> lon);
+        lis -> next = dup;
+        dup -> next = duplica(tmp);
+        return lis;
+    }
+
+    lis -> next = duplica(lis -> next);
+    return lis;
 }

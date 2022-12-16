@@ -16,8 +16,9 @@ int main(int argc, char const **argv){
     capitale *lis = NULL;
 
     lis = listaCapitaleCrea(fin);    
-    cancellaNordiche(lis, 20);
-    listaCapitaleStampa(lis, fout);
+    lis = cancellaNordiche(lis, 75);
+    duplica(lis);
+    listaCapitaleStampa(lis, stdout);
     listaCapitaleDistruggi(lis);
 
     if(fclose(fin) != 0) termina("Errore chiusura file input");

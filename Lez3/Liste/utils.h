@@ -40,4 +40,5 @@ capitale *listaCapitaleCrea(FILE *fin);
 void capitaleStampa(capitale *c, FILE *fout);
 void listaCapitaleStampa(capitale *lis, FILE *fout);
 void listaCapitaleDistruggi(capitale *lis);
+capitale *duplica(capitale *lis);
 //CAPITALI

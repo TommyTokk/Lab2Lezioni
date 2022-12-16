@@ -1,0 +1,4 @@
+louvre, 54, 30
+torre di pisa, 23, 54
+duomo di milano, 53, 12
+statua della libertà, 61, 28
