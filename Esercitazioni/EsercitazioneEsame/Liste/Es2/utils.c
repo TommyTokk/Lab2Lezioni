@@ -348,6 +348,13 @@ numero *numeroCrea(int n){
   return num;
 }
 
+numero numeroC(int n){
+  numero num;
+  num.val = n;
+  num.next = NULL;
+  return num;
+}
+
 numero *creaLista(numero *n, numero *lis){
   if(!lis) return n;
   n -> next = lis;
@@ -359,6 +366,14 @@ numero *aggiungiVal(numero *lis){
   if(lis -> next == NULL) return lis;
   lis -> val += aggiungiVal(lis -> next) -> val;
   return lis;
+}
+
+int maxL(numero *lis, int max){
+  if(!lis) return max;
+  if(lis -> val > max){
+    return (maxL(lis -> next, lis -> val));
+  }
+  return maxL(lis -> next, max);
 }
 
 void listaStampa(numero *lis){

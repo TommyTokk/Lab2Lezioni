@@ -18,7 +18,7 @@ def main():
 
     for line in lines:
         tokens = line.split(",")
-        attr = Attrazione(tokens[0], tokens[1], tokens[2].strip("\n"))
+        attr = Attrazione(tokens[0], float(tokens[1]), float(tokens[2].strip("\n")))
         attrList.append(attr)
 
     for attr in attrList:

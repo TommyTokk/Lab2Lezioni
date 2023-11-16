@@ -12,12 +12,13 @@ int main(int argc, char const *argv[]){
 
 
     numero *lis = NULL;
-    aggiungiVal(lis);
 
     lis = creaLista(n1, lis);
     lis = creaLista(n4, lis);
     lis = creaLista(n3, lis);
     lis = creaLista(n2, lis);
+
+    printf("Il massimo è: %d\n", maxL(lis, lis -> val));
 
     listaStampa(lis);
     listaDistruggi(lis);

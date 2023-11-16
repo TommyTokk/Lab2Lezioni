@@ -64,6 +64,8 @@ int xpthread_join(pthread_t thread, void **retval, int linea, char *file);
 numero *creaLista(numero *n, numero *lis);
 void listaStampa(numero *lis);
 numero *numeroCrea(int numero);
+numero numeroC(int n);
 void numeroDistruggi(numero *lis);
 void listaDistruggi(numero *lis);
 numero *aggiungiVal(numero *lis);
+int maxL(numero *lis, int max);
